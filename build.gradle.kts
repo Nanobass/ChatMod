@@ -1,12 +1,13 @@
 import de.undercouch.gradle.tasks.download.Download
 
 object Properties {
-    const val MOD_VERSION = "0.1"
-    const val MOD_NAME = "Example Mod"
-    const val MODID = "examplemod"
+    const val MOD_VERSION = "3.0"
+    const val MOD_NAME = "Nanobass-Chat"
+    const val MODID = "nanobass_chat"
     const val MAVEN_GROUP = "com.example.examplemod"
-    const val COSMIC_REACH_VERSION = "0.1.11"
+    const val COSMIC_REACH_VERSION = "0.1.15"
     const val LOADER_VERSION = "0.15.7"
+    const val FLUX_VERSION = "0.5.0"
 }
 
 val modJarName = "${Properties.MOD_NAME}_${Properties.MOD_VERSION}-CR_${Properties.COSMIC_REACH_VERSION}-all"
@@ -28,8 +29,11 @@ repositories {
         }
     }
 
+    maven("https://jitpack.io")
     maven("https://repo.spongepowered.org/maven/")
     maven("https://maven.fabricmc.net/")
+    maven("https://maven.quiltmc.org/repository/release")
+
 }
 
 // Required Fabric Dependencies
@@ -55,9 +59,11 @@ dependencies {
 
 // Embedded | Project Dependencies
 dependencies {
-    // shadow == NO EMBED
-    // implementation == EMBED
-//    shadow(files("$projectDir/run/mods/FluxAPI.jar"))
+    implementation ("org.hjson:hjson:3.1.0")
+    implementation ("org.tinylog:tinylog:1.3.1")
+    implementation ("com.github.tobiasrm:tinylog-coloredconsole:1.3.1")
+
+    implementation ("dev.crmodders:FluxAPI:${Properties.FLUX_VERSION}")
 }
 
 base.archivesName = modJarName
@@ -66,6 +72,7 @@ val properties = mapOf(
     "version" to Properties.MOD_VERSION,
     "loader_version" to Properties.LOADER_VERSION,
     "cosmic_reach_version" to Properties.COSMIC_REACH_VERSION,
+    "flux_version" to Properties.FLUX_VERSION,
     "mod_name" to Properties.MOD_NAME,
     "modid" to Properties.MODID,
 )

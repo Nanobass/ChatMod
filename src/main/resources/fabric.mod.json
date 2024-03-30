@@ -5,19 +5,24 @@
   "name": "${mod_name}",
   "description": "Fabric mod for Cosmic Reach!",
   "authors": [
+    "Nanobass"
   ],
   "license": "CC0-1.0",
   "environment": "*",
   "entrypoints": {
+    "preLaunch": [
+      "nanobass.qol.NanobassQolMod"
+    ],
     "main": [
-      "com.example.examplemod.ExampleMod"
+      "nanobass.qol.NanobassQolMod"
     ]
   },
   "mixins": [
-    "examplemod.mixins.json"
+    "chat.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
-    "cosmic_reach": ">=${cosmic_reach_version}"
+    "cosmic_reach": ">=${cosmic_reach_version}",
+    "fluxapi": ">=${flux_version}"
   }
 }

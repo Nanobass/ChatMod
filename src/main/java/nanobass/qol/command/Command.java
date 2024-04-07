@@ -2,8 +2,8 @@ package nanobass.qol.command;
 
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.JsonValue;
-import finalforeach.cosmicreach.world.blocks.Block;
-import finalforeach.cosmicreach.world.blocks.BlockState;
+import finalforeach.cosmicreach.blocks.Block;
+import finalforeach.cosmicreach.blocks.BlockState;
 
 import java.util.*;
 

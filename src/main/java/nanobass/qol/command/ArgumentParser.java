@@ -1,8 +1,8 @@
 package nanobass.qol.command;
 
 import com.badlogic.gdx.utils.Array;
-import finalforeach.cosmicreach.world.blocks.Block;
-import finalforeach.cosmicreach.world.blocks.BlockState;
+import finalforeach.cosmicreach.blocks.Block;
+import finalforeach.cosmicreach.blocks.BlockState;
 import nanobass.qol.exception.BlockNotFoundException;
 import nanobass.qol.exception.BlockStateNotValidException;
 
@@ -64,7 +64,7 @@ public class ArgumentParser {
 			return block.getDefaultBlockState();
 		}
 		try {
-			return block.getBlockStateFromString(stateString);
+			return block.blockStates.get(stateString);
 		} catch (RuntimeException e) {
 			throw new BlockStateNotValidException(block, stateString);
 		}

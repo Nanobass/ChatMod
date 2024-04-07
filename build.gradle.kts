@@ -5,9 +5,9 @@ object Properties {
     const val MOD_NAME = "Nanobass-Chat"
     const val MODID = "nanobass_chat"
     const val MAVEN_GROUP = "com.example.examplemod"
-    const val COSMIC_REACH_VERSION = "0.1.15"
+    const val COSMIC_REACH_VERSION = "0.1.21"
     const val LOADER_VERSION = "0.15.7"
-    const val FLUX_VERSION = "0.5.0"
+    const val FLUX_VERSION = "0.5.4"
 }
 
 val modJarName = "${Properties.MOD_NAME}_${Properties.MOD_VERSION}-CR_${Properties.COSMIC_REACH_VERSION}-all"
@@ -22,12 +22,7 @@ plugins {
 }
 
 repositories {
-    mavenCentral {
-        content {
-            excludeGroupByRegex("org.ow2.asm")
-            excludeGroupByRegex("io.github.llamalad7")
-        }
-    }
+    mavenCentral()
 
     maven("https://jitpack.io")
     maven("https://repo.spongepowered.org/maven/")
@@ -41,17 +36,17 @@ dependencies {
     implementation("com.google.guava:guava:33.0.0-jre")
     implementation("com.google.code.gson:gson:2.9.1")
 
-    implementation("net.fabricmc:fabric-loader:0.15.7")
-    implementation("net.fabricmc:tiny-mappings-parser:0.2.2.14")
-    implementation("net.fabricmc:access-widener:2.1.0")
-    implementation("net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5")
+    shadow("net.fabricmc:fabric-loader:0.15.7")
+    shadow("net.fabricmc:tiny-mappings-parser:0.2.2.14")
+    shadow("net.fabricmc:access-widener:2.1.0")
+    shadow("net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5")
 
-    implementation("org.ow2.asm:asm:9.6")
-    implementation("org.ow2.asm:asm-util:9.6")
-    implementation("org.ow2.asm:asm-tree:9.6")
-    implementation("org.ow2.asm:asm-analysis:9.6")
-    implementation("org.ow2.asm:asm-commons:9.6")
-    implementation("io.github.llamalad7:mixinextras-fabric:0.3.5")
+    shadow("org.ow2.asm:asm:9.6")
+    shadow("org.ow2.asm:asm-util:9.6")
+    shadow("org.ow2.asm:asm-tree:9.6")
+    shadow("org.ow2.asm:asm-analysis:9.6")
+    shadow("org.ow2.asm:asm-commons:9.6")
+    shadow("io.github.llamalad7:mixinextras-fabric:0.3.5")
 
     shadow(files("$projectDir/run/cosmic-reach.jar"))
     shadow(files("$projectDir/run/loader.jar"))
@@ -59,11 +54,7 @@ dependencies {
 
 // Embedded | Project Dependencies
 dependencies {
-    implementation ("org.hjson:hjson:3.1.0")
-    implementation ("org.tinylog:tinylog:1.3.1")
-    implementation ("com.github.tobiasrm:tinylog-coloredconsole:1.3.1")
-
-    implementation ("dev.crmodders:FluxAPI:${Properties.FLUX_VERSION}")
+    shadow ("dev.crmodders:FluxAPI:${Properties.FLUX_VERSION}")
 }
 
 base.archivesName = modJarName
@@ -119,7 +110,7 @@ tasks.register("runClient") {
     group = "crmodders"
 
     dependsOn("clearCache")
-    dependsOn("jar")
+    dependsOn("shadowJar")
 
     doLast{
         var betterClasspath = listOf<File>()
@@ -128,7 +119,7 @@ tasks.register("runClient") {
 
         javaexec {
             workingDir("$projectDir/run")
-            jvmArgs("-Dfabric.skipMcProvider=true","-Dfabric.development=true")
+            jvmArgs("-Dfabric.skipMcProvider=true","-Dfabric.development=false", "-Dfabric.addMods=C:\\Users\\mwsch\\IdeaProjects\\ChatMod\\build\\libs\\Nanobass-Chat_3.0-CR_0.1.21-all-all.jar")
             classpath(betterClasspath)
             mainClass = "net.fabricmc.loader.impl.launch.knot.KnotClient"
         }

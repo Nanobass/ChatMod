@@ -2,10 +2,10 @@ package nanobass.qol.command;
 
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.JsonReader;
+import finalforeach.cosmicreach.blocks.Block;
+import finalforeach.cosmicreach.blocks.BlockState;
+import finalforeach.cosmicreach.entities.Player;
 import finalforeach.cosmicreach.gamestates.InGame;
-import finalforeach.cosmicreach.world.blocks.Block;
-import finalforeach.cosmicreach.world.blocks.BlockState;
-import finalforeach.cosmicreach.world.entities.Player;
 import nanobass.qol.command.Command.Argument;
 import nanobass.qol.command.Command.ArgumentType;
 import nanobass.qol.command.Command.Parameter;

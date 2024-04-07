@@ -1,6 +1,7 @@
 package nanobass.qol.exception;
 
-import finalforeach.cosmicreach.world.blocks.Block;
+
+import finalforeach.cosmicreach.blocks.Block;
 
 public class BlockStateNotValidException extends Exception {
 

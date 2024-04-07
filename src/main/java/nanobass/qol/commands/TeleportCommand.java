@@ -1,8 +1,8 @@
 package nanobass.qol.commands;
 
 import com.badlogic.gdx.math.Vector3;
+import finalforeach.cosmicreach.entities.Player;
 import finalforeach.cosmicreach.gamestates.InGame;
-import finalforeach.cosmicreach.world.entities.Player;
 import nanobass.qol.command.Command;
 import nanobass.qol.command.CommandProvider;
 

@@ -4,10 +4,11 @@ import com.badlogic.gdx.Input;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import finalforeach.cosmicreach.entities.Player;
 import finalforeach.cosmicreach.gamestates.GameState;
 import finalforeach.cosmicreach.gamestates.InGame;
 import finalforeach.cosmicreach.world.World;
-import finalforeach.cosmicreach.world.entities.Player;
+import finalforeach.cosmicreach.world.Zone;
 import nanobass.qol.Chat;
 import nanobass.qol.ChatMessage;
 import nanobass.qol.ChatProvider;
@@ -33,8 +34,8 @@ public abstract class IngameMixin extends GameState {
 		return isKeyJustPressed;
 	}
 
-	@WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lfinalforeach/cosmicreach/world/entities/Player;update(Lfinalforeach/cosmicreach/world/World;)V"))
-	private boolean disablePlayer(Player instance, World world) {
+	@WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lfinalforeach/cosmicreach/entities/Player;update(Lfinalforeach/cosmicreach/world/Zone;)V"))
+	private boolean disablePlayer(Player instance, Zone world) {
 		return !Chat.INSTANCE.active;
 	}
 
